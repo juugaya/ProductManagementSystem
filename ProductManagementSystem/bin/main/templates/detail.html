@@ -1,0 +1,21 @@
+<!-- HTML文書の開始を表すタグです -->
+<!DOCTYPE html>
+<!-- html要素でHTML文書全体を囲む。xmlns属性はThymeleafというライブラリを使うためのもの -->
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- head要素内には文書に関する情報が入ります。今回はページのタイトルだけです -->
+<head>
+    <!-- ページのタイトルを設定します -->
+    <title>Product Detail</title>
+</head>
+<!-- body要素内には表示する内容が入ります -->
+<body>
+    <!-- 製品詳細の見出し -->
+    <h1>Product Detail</h1>
+    <!-- 製品の名前を大見出しとして表示します -->
+    <h2 th:text="${product.name}"></h2>
+    <!-- 製品の説明を段落（p要素）として表示します -->
+    <p th:text="${product.description}"></p>
+    <!-- 製品一覧ページへのリンク -->
+    <a href="/">Back to list</a>
+</body>
+</html>
