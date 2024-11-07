@@ -1,0 +1,31 @@
+<!-- HTML文書の開始を表すタグです -->
+<!DOCTYPE html>
+<!-- html要素でHTML文書全体を囲む。xmlns属性はThymeleafというライブラリを使うためのもの -->
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- head要素内には文書に関する情報が入ります。今回はページのタイトルだけです -->
+<head>
+    <!-- ページのタイトルを設定します -->
+    <title>新しい商品登録ページ</title>
+</head>
+<!-- body要素内には表示する内容が入ります -->
+<body>
+    <!-- 製品追加の見出し -->
+    <h1>新しい商品登録ページ</h1>
+    <!-- 製品情報を入力するためのフォーム -->
+    <form action="#" th:action="@{/saveProduct}" th:object="${product}" method="post">
+        <!-- ラベルと入力欄（input要素）の組を作ります -->
+        <label for="name">商品名</label>
+        <input type="text" th:field="*{name}" id="name">
+        <!-- ラベルと入力欄（input要素）の組を作ります -->
+        <label for="description">説明（コメント)</label>
+        <input type="text" th:field="*{description}" id="description">
+		
+		<label for="price">価格</label>
+		        <input type="text" th:field="*{price}" id="price">
+        <!-- 送信ボタン -->
+        <input type="submit" value="登録する">
+    </form>
+    <!-- 製品一覧ページへのリンク -->
+    <a href="/">一覧ページに戻る</a>
+</body>
+</html>

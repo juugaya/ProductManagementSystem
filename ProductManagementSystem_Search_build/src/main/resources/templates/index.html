@@ -1,0 +1,56 @@
+<!-- HTML文書の開始を表すタグです -->
+<!DOCTYPE html>
+<!-- html要素でHTML文書全体を囲む。xmlns属性はThymeleafというライブラリを使うためのもの -->
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- head要素内には文書に関する情報が入ります。今回はページのタイトルだけです -->
+<head>
+    <!-- ページのタイトルを設定します -->
+    <title>商品管理一覧ページ</title>
+</head>
+<!-- body要素内には表示する内容が入ります -->
+<body>
+    <!-- 製品一覧の見出し -->
+    <h1>製品一覧ページ</h1>
+    <!-- 製品追加ページへのリンク -->
+    <a href="/showNewProductForm">新しい商品を登録する</a>
+    <!-- 表（table）を作成します。表は行（tr）とセル（td）で構成されます -->
+    
+     <!--　レコードをキーワードで検索するフォームです -->
+    <form th:action="@{/search}" method="get">
+		<input type="text" name="searchQuery" placeholder="検索キーワードを入力して下さい">
+		<button type="submit">Search</button>
+	</form>
+    
+    <table>
+        <!-- 表の見出し部分 -->
+        <thead>
+            <tr>
+                <th>商品名</th>
+                <th>説明（コメント）</th>
+				<th>価格</th>
+                <th>操作</th>
+				
+            </tr>
+        </thead>
+        <!-- 表の本体部分。各製品に対して行を作成します -->
+        <tbody>
+            <!-- listProductsから1つずつ製品を取り出し、それに対する行を作成します -->
+            <tr th:each="product : ${listProducts}">
+                <!-- 製品の名前を表示します -->
+                <td th:text="${product.name}"></td>
+                <!-- 製品の説明を表示します -->
+                <td th:text="${product.description}"></td>
+				
+				<td th:text="${product.price}"></td>
+                <td>
+                    <!-- 更新ページへのリンク。URLに製品のIDを含めます -->
+                    <a th:href="@{/showFormForUpdate/{id}(id=${product.id})}">詳細</a>
+                    <!-- 削除を実行するリンク。URLに製品のIDを含めます -->
+                    <a th:href="@{/deleteProduct/{id}(id=${product.id})}">削除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
